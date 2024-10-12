@@ -1,0 +1,74 @@
+main {
+    padding: 0px;
+    flex-grow: 1; /* Para que el main ocupe el espacio restante */
+}
+
+.hero {
+    background-color: #e0f7fa; /* Color de fondo para la sección hero */
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.hero h2 {
+    font-size: 28px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 20px 10px;
+}
+
+.sub {
+    margin: 20px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a {
+    margin: 20px;
+}
+
+.btn:hover {
+    background-color: #45a049; /* Cambio de color al pasar el mouse */
+}
+
+.about-us {
+    text-align: center;
+}
+
+.about-us h2 {
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    font-size: 16px;
+    line-height: 1.5; /* Mejora la legibilidad */
+    margin: 20px;
+}
+
+.calidad {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente (si hay altura definida) */
+}
+
+.cer {
+    width: 11%;
+    margin-bottom: 100px;
+    padding-bottom: 15px;
+}
