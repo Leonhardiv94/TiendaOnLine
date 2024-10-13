@@ -6,6 +6,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './user.js'; // Asegúrate de que la extensión .js esté incluida
 
+// Configuración de dotenv para manejar variables de entorno
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,11 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Rutas
 app.use('/api/users', userRoutes);
+
+// Manejo de errores 404
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not Found' });
+});
 
 // Iniciar el servidor
 app.listen(PORT, () => {
