@@ -70,6 +70,11 @@ nav ul li a {
     text-decoration: none;
 }
 
+nav ul li a:hover {
+    text-decoration: underline; /* Subraya el texto al pasar el mouse */
+    color: #FFD700; /* Cambia el color del texto en hover */
+}
+
 .cuerpo {
     margin-top: 90px;
     margin-bottom: 100px;

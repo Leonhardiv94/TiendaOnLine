@@ -19,4 +19,14 @@ export class AuthService {
       })
     );
   }
+
+  // Método para autenticar un usuario
+  loginUser(credentials: { email: string; contrasena: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+      catchError((error) => {
+        console.error('Error en el login:', error);
+        throw error; // Re-lanza el error para manejarlo en el componente
+      })
+    );
+  }
 }
