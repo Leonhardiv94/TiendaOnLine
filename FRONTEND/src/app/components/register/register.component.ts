@@ -20,7 +20,8 @@ export class RegisterComponent {
       cedula: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contrasena: ['', [Validators.required, Validators.minLength(6)]]
+      contrasena: ['', [Validators.required, Validators.minLength(6)]],
+      tipoUsuario: ["general"]
     });
   }
 
