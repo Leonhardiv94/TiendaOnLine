@@ -29,7 +29,7 @@ export class RegisterComponent {
     if (this.registroForm.valid) {
         try {
             const response = await axios.post('http://localhost:5000/api/users/register', this.registroForm.value);
-            console.log(response.data.message); // Esto debería imprimir el mensaje de éxito
+            console.log(response.data.message);
             this.router.navigate(['/successful-registration']); // Redirige a la página de éxito
         } catch (error) {
             console.error('Error al registrar:', error);

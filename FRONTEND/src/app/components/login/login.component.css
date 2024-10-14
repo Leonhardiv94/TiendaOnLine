@@ -26,7 +26,7 @@ label {
 
 input[type="email"],
 input[type="password"] {
-    width: 100%; /* Ancho completo */
+    width: 95%; /* Ancho completo */
     padding: 10px; /* Espacio interno */
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 4px; /* Bordes redondeados */

@@ -12,7 +12,7 @@ export class AuthService {
 
   // Método para registrar un nuevo usuario
   registerUser(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, userData).pipe(
+    return this.http.post(`${this.apiUrl}/register`, userData).pipe(
       catchError((error) => {
         console.error('Error al registrar:', error);
         throw error; // Re-lanza el error para manejarlo en el componente
