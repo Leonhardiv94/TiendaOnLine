@@ -1,6 +1,7 @@
 // src/user.js
 import express from 'express';
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
@@ -16,16 +17,35 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
-// Ruta para crear un nuevo usuario
-router.post('/', async (req, res) => {
+// Ruta para registrar un usuario
+router.post('/register', async (req, res) => {
   const { nombre, apellido, cedula, fechaNacimiento, email, contrasena } = req.body;
 
   try {
-    const newUser = new User({ nombre, apellido, cedula, fechaNacimiento, email, contrasena });
+
+    // Verifica que todos los campos requeridos están presentes
+    if (!nombre || !apellido || !cedula || !fechaNacimiento || !email || !contrasena) {
+      return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    }
+
+    // Encriptar la contraseña antes de guardarla en la base de datos
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(contrasena, salt);
+
+    // Crear un nuevo usuario con la contraseña encriptada
+    const newUser = new User({
+      nombre,
+      apellido,
+      cedula,
+      fechaNacimiento,
+      email,
+      contrasena: hashedPassword,
+    });
+
     await newUser.save();
-    res.status(201).json({ message: 'Usuario registrado con éxito' });
+    res.status(201).json({ message: 'Usuario registrado exitosamente' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -85,6 +105,30 @@ router.put('/cedula/:cedula', async (req, res) => {
     res.status(200).json(user); // Retorna el usuario actualizado
   } catch (error) {
     console.error('Error al actualizar el usuario:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Ruta para autenticar un usuario
+router.post('/login', async (req, res) => {
+  const { email, contrasena } = req.body;
+
+  try {
+    // Busca al usuario por correo
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+
+    // Compara la contraseña ingresada con la almacenada (encriptada)
+    const isMatch = await bcrypt.compare(contrasena, user.contrasena);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+
+    // Si la autenticación es exitosa
+    res.status(200).json({ message: 'Ingreso exitoso' });
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });

@@ -10,10 +10,17 @@ import userRoutes from './user.js'; // Asegúrate de que la extensión .js esté
 dotenv.config();
 
 const app = express();
+
+// Configura CORS
+app.use(cors({
+  origin: 'http://localhost:4200', // La URL de tu aplicación Angular
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
 app.use(bodyParser.json());
 
 // Conectar a MongoDB Atlas
@@ -27,6 +34,12 @@ app.use('/api/users', userRoutes);
 // Manejo de errores 404
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
+});
+
+// Manejo de errores global 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong' });
 });
 
 // Iniciar el servidor
