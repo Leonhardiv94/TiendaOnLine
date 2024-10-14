@@ -4,6 +4,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
+// Configuración de la aplicación
 const appConfigWithHttpClient = {
   ...appConfig,
   providers: [
@@ -12,5 +14,6 @@ const appConfigWithHttpClient = {
   ]
 };
 
+// Inicializa la aplicación
 bootstrapApplication(AppComponent, appConfigWithHttpClient)
   .catch((err) => console.error(err));

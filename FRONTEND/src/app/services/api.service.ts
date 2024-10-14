@@ -6,11 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = ' http://localhost:4200/';
+  private apiUrl = ' http://localhost:5000/';
 
   constructor(private http: HttpClient) { }
 
   getUsuarios(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+
+  
 }

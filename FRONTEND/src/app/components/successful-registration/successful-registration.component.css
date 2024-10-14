@@ -1,0 +1,46 @@
+body {
+    background-color: #f4f4f4; /* Color de fondo ligero */
+    color: #333; /* Color de texto principal */
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal para el mensaje de éxito */
+.success-container {
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 100px auto; /* Centramos el contenedor en la página */
+    padding: 20px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center; /* Centramos el texto */
+}
+
+/* Título principal */
+.success-title {
+    font-size: 24px; /* Tamaño del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    color: #4CAF50; /* Color verde para el éxito */
+}
+
+/* Mensaje de éxito */
+.success-message {
+    font-size: 16px; /* Tamaño del texto */
+    margin-bottom: 20px; /* Espacio debajo del mensaje */
+    line-height: 1.5; /* Espaciado entre líneas */
+}
+
+/* Botón de regreso o acción */
+.success-button {
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #4CAF50; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    font-size: 16px; /* Tamaño del texto del botón */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.success-button:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+}

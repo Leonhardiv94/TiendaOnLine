@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     padding: 0 20px; /* Añade un poco de padding en los lados */
     background-color: #f0f4f8;
   }
@@ -12,7 +12,8 @@
   .registro-form {
     max-width: 400px;
     width: 100%;
-    padding: 30px;
+    padding: 100px;
+    margin-bottom: 50px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #fff;
@@ -31,7 +32,7 @@
   
   /* Estilo de los grupos de formulario */
   .form-group {
-    margin-bottom: 15px; /* Espacio uniforme entre los campos */
+    margin-bottom: 5px; /* Espacio uniforme entre los campos */
   }
   
   /* Estilo de las etiquetas */
@@ -45,11 +46,11 @@
   /* Estilo de los campos de entrada */
   input {
     width: 100%;
-    padding: 12px; /* Aumenta el padding para un mejor aspecto */
+    padding: 5px; /* Aumenta el padding para un mejor aspecto */
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s;
-    font-size: 16px; /* Aumenta el tamaño de fuente */
+    font-size: 12px; /* Aumenta el tamaño de fuente */
   }
   
   /* Estilo de los campos de entrada en foco */
@@ -61,7 +62,8 @@
   /* Estilo del botón de envío */
   .btn-submit {
     width: 100%;
-    padding: 12px; /* Aumenta el padding para el botón */
+    padding: 5px; /* Aumenta el padding para el botón */
+    margin-top: 20px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -80,6 +82,7 @@
   .form-footer {
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 0;
   }
   
   /* Estilo de enlaces en el pie de formulario */
