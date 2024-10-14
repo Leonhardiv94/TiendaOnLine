@@ -13,18 +13,20 @@ const UserSchema = new mongoose.Schema({
   fechaNacimiento: Date,
   email:  { type: String, unique: true },
   contrasena: String,
+  tipoUsuario: { type: String, default: 'general' },
 });
 
 const User = mongoose.model('User', UserSchema);
 
 // Ruta para registrar un usuario
 router.post('/register', async (req, res) => {
-  const { nombre, apellido, cedula, fechaNacimiento, email, contrasena } = req.body;
+  console.log(req.body); // Para ver qué datos llegan
+  const { nombre, apellido, cedula, fechaNacimiento, email, contrasena, tipoUsuario } = req.body;
 
   try {
 
     // Verifica que todos los campos requeridos están presentes
-    if (!nombre || !apellido || !cedula || !fechaNacimiento || !email || !contrasena) {
+    if (!nombre || !apellido || !cedula || !fechaNacimiento || !email || !contrasena || !tipoUsuario) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
@@ -40,6 +42,7 @@ router.post('/register', async (req, res) => {
       fechaNacimiento,
       email,
       contrasena: hashedPassword,
+      tipoUsuario,
     });
 
     await newUser.save();

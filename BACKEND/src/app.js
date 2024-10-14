@@ -14,7 +14,7 @@ const app = express();
 // Configura CORS
 app.use(cors({
   origin: 'http://localhost:4200', // La URL de tu aplicación Angular
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
 
