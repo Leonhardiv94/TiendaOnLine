@@ -111,7 +111,7 @@ export class ManageProductsComponent {
     console.log('Eliminar producto:', this.productoEncontrado);
     
   // Realiza la solicitud al backend para eliminar el usuario
-  this.http.delete(`http://localhost:5000/api/products/codigoBarras/${this.productoEncontrado.codigoBarras}`)
+  this.http.delete(`http://localhost:5000/api/products/eliminar/${this.productoEncontrado.codigoBarras}`)
     .subscribe({
       next: (response) => {
         console.log('Producto eliminado:', response);
@@ -129,10 +129,10 @@ export class ManageProductsComponent {
   
   modificarProducto() {
     console.log('Modificar producto:', this.productoEncontrado);
-    this.http.put(`http://localhost:5000/api/products/codigoBarras/${this.productoEncontrado.cedula}`, {
+    this.http.put(`http://localhost:5000/api/products/codigoBarras/${this.productoEncontrado.codigoBarras}`, {
       nombre: this.productoEncontrado.nombre,
-      apellido: this.productoEncontrado.precio,
-      email: this.productoEncontrado.descripcion,
+      precio: this.productoEncontrado.precio,
+      descripcion: this.productoEncontrado.descripcion,
     }).subscribe({
       next: (response: any) => {
         console.log('Producto modificado:', response);
