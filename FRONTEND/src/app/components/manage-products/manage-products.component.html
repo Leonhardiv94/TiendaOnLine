@@ -1,1 +1,32 @@
-<p>manage-products works!</p>
+<div class="manage-products-container">
+    <h2>Gestionar Productos</h2>
+  
+    <button (click)="mostrarFormularioCrear()" class="create-button">Crear Producto</button>
+  
+    <!-- Formulario para crear un nuevo producto -->
+    <div *ngIf="crearProductoVisible" class="create-form">
+      <h3>Crear Nuevo Producto</h3>
+      <form (ngSubmit)="crearProducto()">
+        <label for="nombreProducto">Nombre del Producto:</label>
+        <input type="text" id="nombreProducto" [(ngModel)]="nuevoProducto.nombre" name="nombreProducto" required/>
+  
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" (change)="onImageSelected($event)" required/>
+  
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" [(ngModel)]="nuevoProducto.precio" name="precio" required/>
+  
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required></textarea>
+  
+        <label for="codigoBarras">Código de Barras:</label>
+        <input type="text" id="codigoBarras" [(ngModel)]="nuevoProducto.codigoBarras" name="codigoBarras" required/>
+  
+        <button type="submit" class="submit-button">Crear Producto</button>
+        <button (click)="cancelarCreacion()" class="cancel-button">Cancelar</button>
+      </form>
+    </div>
+  
+    <!-- Aquí puedes añadir más contenido relacionado con la gestión de productos -->
+  </div>
+  
