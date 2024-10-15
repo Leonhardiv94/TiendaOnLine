@@ -25,23 +25,34 @@ export class LoginComponent {
   }
 
   // Método que se llama al enviar el formulario
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const userData = this.loginForm.value; // Obtenemos los valores del formulario
+onSubmit() {
+  if (this.loginForm.valid) {
+    const userData = this.loginForm.value; // Obtenemos los valores del formulario
 
-      // Realizamos la petición HTTP
-      this.http.post('http://localhost:5000/api/users/login', userData).subscribe({
-        next: (response: any) => {
-          this.loginMessage = 'Ingreso exitoso';
-          this.router.navigate(['/home']); // Redirigimos al home en caso de éxito
-        },
-        error: (error) => {
-          console.error('Error en el login:', error);
-          this.loginMessage = 'Credenciales incorrectas. Intenta de nuevo.';
+    // Realizamos la petición HTTP
+    this.http.post('http://localhost:5000/api/users/login', userData).subscribe({
+      next: (response: any) => {
+        // Verificamos el tipoUsuario en la respuesta
+        const tipoUsuario = response.tipoUsuario;
+
+        // Redirigimos según el tipo de usuario
+        if (tipoUsuario === 'admin') {
+          this.router.navigate(['/admin']); // Página para administradores
+        } else if (tipoUsuario === 'general') {
+          this.router.navigate(['/home']); // Página para usuarios generales
         }
-      });
-    } else {
-      this.loginMessage = 'Por favor completa los campos correctamente.';
-    }
+
+        // Mensaje de éxito
+        this.loginMessage = 'Ingreso exitoso';
+      },
+      error: (error) => {
+        console.error('Error en el login:', error);
+        this.loginMessage = 'Credenciales incorrectas. Intenta de nuevo.';
+      }
+    });
+  } else {
+    this.loginMessage = 'Por favor completa los campos correctamente.';
   }
+}
+
 }

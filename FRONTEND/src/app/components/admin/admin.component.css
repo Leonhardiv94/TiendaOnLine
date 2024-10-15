@@ -1,41 +1,65 @@
+/* Contenedor principal del panel de administración */
 .admin-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
+    justify-content: top; /* Alinea verticalmente al centro */
+    align-items: center; /* Alinea horizontalmente al centro */
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: #f4f4f4;
+    padding: 0; /* Elimina cualquier relleno adicional */
+    margin: 0; /* Elimina márgenes extra */
+    box-sizing: border-box;
   }
   
+  /* Título principal */
   h1 {
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    text-align: center;
+    padding-top: 100px;
   }
   
+  /* Contenedor para los botones */
   .button-container {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre botones */
+    gap: 1rem; /* Espacio entre los botones */
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo del contenedor */
   }
   
+  /* Estilo general de los botones */
   .admin-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 1.2rem;
     color: white;
-    background-color: #007bff; /* Color azul */
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: 200px; /* Ancho fijo */
+    transition: background-color 0.3s ease;
+    width: 100%;
   }
   
+  /* Hover sobre los botones */
   .admin-button:hover {
-    background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
+    background-color: #0056b3;
   }
   
-  @media (max-width: 600px) {
+  /* Responsividad: para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .admin-container {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
     .admin-button {
-      width: 100%; /* Botones ocupan el 100% del ancho en pantallas pequeñas */
+      font-size: 1rem;
+      padding: 12px;
     }
   }
   
