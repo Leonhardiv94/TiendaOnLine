@@ -76,12 +76,13 @@ nav ul li a:hover {
 }
 
 .cuerpo {
+    height: 100vh;
     margin-top: 90px;
     margin-bottom: 100px;
 }
 
 footer {
-    position: fixed;
+    position: relative;
     background-color: #333;
     color: white;
     text-align: center;

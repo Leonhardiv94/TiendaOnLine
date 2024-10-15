@@ -12,10 +12,10 @@ export class AdminComponent {
   constructor(private router: Router) {}
 
   navigateToUsers() {
-    this.router.navigate(['/manage-users']); // Cambia esta ruta por la que tengas para gestionar usuarios
+    this.router.navigate(['/manage-users']);
   }
 
   navigateToProducts() {
-    this.router.navigate(['/manage-products']); // Cambia esta ruta por la que tengas para gestionar productos
+    this.router.navigate(['/manage-products']);
   }
 }

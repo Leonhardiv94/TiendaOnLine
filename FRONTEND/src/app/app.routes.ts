@@ -12,9 +12,9 @@ export const routes: Routes = [
     {path:"home", component: HomeComponent, title: "Inicio"},
     {path:"login", component: LoginComponent, title: "Inicio sesion"},
     {path:"register", component: RegisterComponent, title: "Registro"},
-    {path:"admin", component: AdminComponent, title: "Administracion"},
-    {path:"manage-users", component: ManageProductsComponent },
-    {path:"manage-products", component: ManageUsersComponent },
+    {path:"admin", component: AdminComponent, title: "Administracion"},   
+    {path:"manage-products", component: ManageProductsComponent },
+    {path:"manage-users", component: ManageUsersComponent },
     {path:"successful-registration", component: SuccessfulRegistrationComponent, title: "Registro exitoso" },
     {path:"**", redirectTo: "/register" }
 ]; 
