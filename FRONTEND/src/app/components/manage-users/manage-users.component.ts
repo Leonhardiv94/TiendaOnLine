@@ -29,7 +29,6 @@ export class ManageUsersComponent {
 
   // Método que simula la búsqueda de usuarios
   buscarUsuario() {
-    // Aquí puedes realizar la petición para buscar al usuario en tu base de datos por cédula o correo
     console.log('Buscar usuario por:', this.searchField);
 
     // Realiza la solicitud al backend para buscar el usuario
@@ -79,7 +78,6 @@ export class ManageUsersComponent {
       nombre: this.usuarioEncontrado.nombre,
       apellido: this.usuarioEncontrado.apellido,
       email: this.usuarioEncontrado.email,
-      // Puedes agregar otros campos si es necesario
     }).subscribe({
       next: (response: any) => {
         console.log('Usuario modificado:', response);

@@ -82,7 +82,7 @@ nav ul li a:hover {
 }
 
 footer {
-    position: relative;
+    position: relative, end;
     background-color: #333;
     color: white;
     text-align: center;

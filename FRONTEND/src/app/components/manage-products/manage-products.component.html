@@ -1,32 +1,69 @@
 <div class="manage-products-container">
     <h2>Gestionar Productos</h2>
-  
+
+    <!-- Botón para crear producto -->
     <button (click)="mostrarFormularioCrear()" class="create-button">Crear Producto</button>
-  
-    <!-- Formulario para crear un nuevo producto -->
-    <div *ngIf="crearProductoVisible" class="create-form">
-      <h3>Crear Nuevo Producto</h3>
-      <form (ngSubmit)="crearProducto()">
-        <label for="nombreProducto">Nombre del Producto:</label>
-        <input type="text" id="nombreProducto" [(ngModel)]="nuevoProducto.nombre" name="nombreProducto" required/>
-  
-        <label for="imagen">Imagen:</label>
-        <input type="file" id="imagen" (change)="onImageSelected($event)" required/>
-  
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" [(ngModel)]="nuevoProducto.precio" name="precio" required/>
-  
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required></textarea>
-  
-        <label for="codigoBarras">Código de Barras:</label>
-        <input type="text" id="codigoBarras" [(ngModel)]="nuevoProducto.codigoBarras" name="codigoBarras" required/>
-  
-        <button type="submit" class="submit-button">Crear Producto</button>
-        <button (click)="cancelarCreacion()" class="cancel-button">Cancelar</button>
-      </form>
+    
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchField" placeholder="Buscar por código de barras" class="search-input"/>
+        <button (click)="buscarProducto()" class="search-button">Buscar Producto</button>
     </div>
-  
-    <!-- Aquí puedes añadir más contenido relacionado con la gestión de productos -->
-  </div>
-  
+
+    <div *ngIf="productoEncontrado" class="product-info">
+        <h3>Información del Producto</h3>
+        <p><strong>Nombre:</strong> {{ productoEncontrado.nombre }}</p>
+        <p><strong>Imagen:</strong> <img [src]="'http://localhost:5000/uploads/1728989243301.jpeg'" alt="Imagen del producto" *ngIf="productoEncontrado.imagen" /></p>
+        <p><strong>Precio:</strong> {{ productoEncontrado.precio | currency:'COL': 'symbol' }}</p>
+        <p><strong>Descripción:</strong> {{ productoEncontrado.descripcion }}</p>
+        <p><strong>Código de Barras:</strong> {{ productoEncontrado.codigoBarras }}</p>
+        
+        <div class="button-container">
+            <button (click)="mostrarFormularioModificar()" class="modify-button">Modificar Información</button>
+            <button (click)="eliminarProducto()" class="delete-button">Eliminar Producto</button>
+        </div>
+    </div>
+
+    <!-- Formulario para modificar la información del producto -->
+    <div *ngIf="modificarFormVisible" class="modify-form">
+        <h3>Modificar Información del Producto</h3>
+        <form (ngSubmit)="modificarProducto()">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="productoEncontrado.nombre" name="nombre" required/>
+
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" [(ngModel)]="productoEncontrado.precio" name="precio" required/>
+
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" [(ngModel)]="productoEncontrado.descripcion" name="descripcion" required/>
+
+            <button type="submit" class="submit-button">Guardar Cambios</button>
+            <button (click)="cancelarModificacion()" class="cancel-button">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- Formulario para crear un nuevo producto -->
+    <div *ngIf="crearFormVisible" class="create-form">
+        <h3>Crear Nuevo Producto</h3>
+        <form (ngSubmit)="crearProducto()">
+            <label for="nuevoNombre">Nombre:</label>
+            <input type="text" id="nuevoNombre" [(ngModel)]="nuevoProducto.nombre" name="nuevoNombre" required/>
+
+            <label for="nuevoImagen">Cargar Imagen:</label>
+            <input type="file" id="nuevoImagen" (change)="onFileSelected($event)" required/>
+
+            <label for="nuevoPrecio">Precio:</label>
+            <input type="number" id="nuevoPrecio" [(ngModel)]="nuevoProducto.precio" name="nuevoPrecio" required/>
+
+            <label for="nuevoDescripcion">Descripción:</label>
+            <input type="text" id="nuevoDescripcion" [(ngModel)]="nuevoProducto.descripcion" name="nuevoDescripcion" required/>
+
+            <label for="nuevoCodigoBarras">Código de Barras:</label>
+            <input type="text" id="nuevoCodigoBarras" [(ngModel)]="nuevoProducto.codigoBarras" name="nuevoCodigoBarras" required/>
+
+            <div class="button-container">
+                <button type="submit" class="submit-button">Crear Producto</button>
+                <button (click)="cancelarCreacion()" class="cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
