@@ -14,6 +14,16 @@ export class ManageUsersComponent {
   searchField: string = ''; // Campo de búsqueda para cédula o correo
   usuarioEncontrado: any = null; // Variable para almacenar los datos del usuario buscado
   modificarFormVisible: boolean = false; // Controla la visibilidad del formulario de modificación
+  crearFormVisible: boolean = false; // Controla la visibilidad del formulario de creación
+  nuevoUsuario: any = { // Objeto para almacenar los datos del nuevo usuario
+    nombre: '',
+    apellido: '',
+    cedula: '',
+    fechaNacimiento: '',
+    email: '',
+    contrasena: '',
+    tipoUsuario: 'general' // Valor por defecto
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -36,12 +46,30 @@ export class ManageUsersComponent {
       });
   }
 
+  mostrarFormularioCrear() {
+    this.crearFormVisible = true; // Muestra el formulario de creación
+    this.modificarFormVisible = false; // Asegúrate de ocultar el formulario de modificación
+    this.nuevoUsuario = { // Reinicia el objeto nuevoUsuario
+      nombre: '',
+      apellido: '',
+      cedula: '',
+      fechaNacimiento: '',
+      email: '',
+      contrasena: '',
+      tipoUsuario: 'general'
+    };
+  }
+
   mostrarFormularioModificar() {
     this.modificarFormVisible = true; // Muestra el formulario de modificación
   }
 
   cancelarModificacion() {
     this.modificarFormVisible = false; // Oculta el formulario de modificación
+  }
+
+  cancelarCreacion() {
+    this.crearFormVisible = false; // Oculta el formulario de creación
   }
 
   // Método para modificar la información del usuario
@@ -65,6 +93,21 @@ export class ManageUsersComponent {
     });
   }
 
+  crearUsuario() {
+    console.log('Crear usuario:', this.nuevoUsuario);
+    this.http.post('http://localhost:5000/api/users/register', this.nuevoUsuario)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Usuario creado:', response);
+          alert('Usuario creado exitosamente.');
+          this.crearFormVisible = false; // Oculta el formulario de creación después de crear
+        },
+        error: (error) => {
+          console.error('Error al crear el usuario:', error);
+          alert('Error al crear el usuario.');
+        }
+      });
+  }
 
   // Método para eliminar al usuario
   eliminarUsuario() {

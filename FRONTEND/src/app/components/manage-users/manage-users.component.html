@@ -1,5 +1,8 @@
 <div class="manage-users-container">
     <h2>Gestionar Usuarios</h2>
+
+    <!-- Botón para crear usuario -->
+    <button (click)="mostrarFormularioCrear()" class="create-button">Crear Usuario</button>
     
     <div class="search-container">
       <input type="text" placeholder="Buscar por cédula" [(ngModel)]="searchField" class="search-input"/>
@@ -38,5 +41,41 @@
       <button (click)="cancelarModificacion()" class="cancel-button">Cancelar</button>
     </form>
   </div>
+
+  <!-- Formulario para crear un nuevo usuario -->
+  <div *ngIf="crearFormVisible" class="create-form">
+    <h3>Crear Nuevo Usuario</h3>
+    <form (ngSubmit)="crearUsuario()">
+        <label for="nuevoNombre">Nombre:</label>
+        <input type="text" id="nuevoNombre" [(ngModel)]="nuevoUsuario.nombre" name="nuevoNombre" required/>
+
+        <label for="nuevoApellido">Apellido:</label>
+        <input type="text" id="nuevoApellido" [(ngModel)]="nuevoUsuario.apellido" name="nuevoApellido" required/>
+
+        <label for="nuevoCedula">Cédula:</label>
+        <input type="text" id="nuevoCedula" [(ngModel)]="nuevoUsuario.cedula" name="nuevoCedula" required/>
+
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" [(ngModel)]="nuevoUsuario.fechaNacimiento" name="fechaNacimiento" required/>
+
+        <label for="nuevoEmail">Email:</label>
+        <input type="email" id="nuevoEmail" [(ngModel)]="nuevoUsuario.email" name="nuevoEmail" required/>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" [(ngModel)]="nuevoUsuario.contrasena" name="contrasena" required/>
+
+        <label for="tipoUsuario">Tipo de Usuario:</label>
+        <select id="tipoUsuario" [(ngModel)]="nuevoUsuario.tipoUsuario" name="tipoUsuario" required>
+            <option value="general">General</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <div class="button-container">
+            <button type="submit" class="submit-button">Crear Usuario</button>
+            <button (click)="cancelarCreacion()" class="cancel-button">Cancelar</button>
+        </div>
+    </form>
+</div>
+
   </div>
   
