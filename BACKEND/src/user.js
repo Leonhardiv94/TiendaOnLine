@@ -130,7 +130,10 @@ router.post('/login', async (req, res) => {
     }
 
     // Si la autenticación es exitosa
-    res.status(200).json({ message: 'Ingreso exitoso' });
+    res.status(200).json({ 
+      message: 'Ingreso exitoso',
+      tipoUsuario: user.tipoUsuario
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
