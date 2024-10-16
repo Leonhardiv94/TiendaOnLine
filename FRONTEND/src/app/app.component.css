@@ -4,6 +4,7 @@ html {
 }
 
 body {
+    position: relative;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -11,6 +12,7 @@ body {
     /*min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura */
     display: flex;
     flex-direction: column; /* Para permitir que el footer se mantenga en la parte inferior */
+    min-height: 100%;
 }
 
 
@@ -76,13 +78,14 @@ nav ul li a:hover {
 }
 
 .cuerpo {
-    height: 100vh;
+    flex: 1;
+    display: flex;     /* Permite que los elementos hijos se apilen */
+    flex-direction: column; /* Permite la expansión vertical */
     margin-top: 90px;
     margin-bottom: 100px;
 }
 
 footer {
-    position: relative, end;
     background-color: #333;
     color: white;
     text-align: center;
