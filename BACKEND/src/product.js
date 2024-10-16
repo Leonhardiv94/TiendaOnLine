@@ -24,16 +24,17 @@ const ProductSchema = new mongoose.Schema({
   precio: { type: Number, required: true },
   descripcion: { type: String, required: true },
   codigoBarras: { type: String, required: true, unique: true },
+  marca: { type: String, required: true },
 });
 
 const Product = mongoose.model('Product', ProductSchema);
 
 // Ruta para crear un nuevo producto con imagen
 router.post('/crear', upload.single('imagen'), async (req, res) => {
-  const { nombre, precio, descripcion, codigoBarras } = req.body;
+  const { nombre, precio, descripcion, codigoBarras, marca } = req.body;
 
   // Validar que los campos requeridos estén presentes
-  if (!nombre || !precio || !descripcion || !codigoBarras || !req.file) {
+  if (!nombre || !precio || !descripcion || !codigoBarras || !marca || !req.file) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
 
@@ -45,6 +46,7 @@ router.post('/crear', upload.single('imagen'), async (req, res) => {
       precio,
       descripcion,
       codigoBarras,
+      marca,
     });
 
     await newProduct.save();
