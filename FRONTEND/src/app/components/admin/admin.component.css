@@ -1,3 +1,9 @@
+.contenedorAbsoluto {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-bottom: 120px;
+}
+
 /* Contenedor principal del panel de administración */
 .admin-container {
     display: flex;

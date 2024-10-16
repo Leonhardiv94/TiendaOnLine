@@ -1,3 +1,9 @@
+.contenedorAbsoluto {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-bottom: 120px;
+}
+
 .login-container {
     width: 100%;
     max-width: 400px; /* Ancho máximo del formulario */

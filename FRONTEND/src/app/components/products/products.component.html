@@ -1,15 +1,18 @@
-<div class="products-container">
-    <div *ngFor="let producto of productos" class="product-card">
-        <div class="informacion">
-            <img [src]="'http://localhost:5000/uploads/' + producto.imagen" alt="Imagen del producto" width="200" height="200"/>
-            <h3>{{ producto.nombre }}</h3>
-            <p>{{ producto.descripcion }}</p>
+<div class="contenedorAbsoluto">
+    <div></div>
+    <div class="products-container">
+        <div *ngFor="let producto of productos" class="product-card">
+            <div class="informacion">
+                <img [src]="'http://localhost:5000/uploads/' + producto.imagen" alt="Imagen del producto" width="200" height="200"/>
+                <h3>{{ producto.nombre }}</h3>
+                <p class="text">{{ producto.descripcion }}</p>
+            </div>
+                <p><strong>Precio: </strong>{{ producto.precio | currency }}</p>        
+            <div class="botones">
+                <button (click)="anadirAlCarrito(producto)">Añadir al Carrito</button>
+                <button (click)="comprar(producto)">Comprar</button>
+            </div>  
         </div>
-            <p><strong>Precio: </strong>{{ producto.precio | currency }}</p>        
-        <div class="botones">
-            <button (click)="anadirAlCarrito(producto)">Añadir al Carrito</button>
-            <button (click)="comprar(producto)">Comprar</button>
-        </div>  
     </div>
-  </div>
-  
+    <div></div>
+</div>
