@@ -23,7 +23,8 @@ export class ManageProductsComponent {
     imagen: '',
     precio: 0,
     descripcion: '',
-    codigoBarras: ''
+    codigoBarras: '',
+    marca: ''
   };
   
   selectedFile: File | null = null; // Archivo seleccionado
@@ -68,6 +69,7 @@ export class ManageProductsComponent {
     formData.append('precio', this.nuevoProducto.precio.toString());
     formData.append('descripcion', this.nuevoProducto.descripcion);
     formData.append('codigoBarras', this.nuevoProducto.codigoBarras);
+    formData.append('marca', this.nuevoProducto.marca);
 
     // Enviar el FormData al servidor
     this.http.post('http://localhost:5000/api/products/crear', formData)
@@ -98,6 +100,7 @@ export class ManageProductsComponent {
       .catch(error => {
         console.error('Error al buscar el producto:', error);
         this.error = 'Producto no encontrado o error en la búsqueda'; // Mostrar un error al usuario
+        alert("Producto no existe");
       });
   }
 

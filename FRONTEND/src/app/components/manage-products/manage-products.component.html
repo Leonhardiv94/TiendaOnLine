@@ -12,7 +12,7 @@
     <div *ngIf="productoEncontrado" class="product-info">
         <h3>Información del Producto</h3>
         <p><strong>Nombre:</strong> {{ productoEncontrado.nombre }}</p>
-        <p><strong>Imagen:</strong> <img [src]="'http://localhost:5000/uploads/1728989243301.jpeg'" alt="Imagen del producto" *ngIf="productoEncontrado.imagen" /></p>
+        <p><strong>Imagen:</strong> <img [src]="'http://localhost:5000/uploads/' + productoEncontrado.imagen" alt="Imagen del producto" *ngIf="productoEncontrado.imagen" /></p>
         <p><strong>Precio:</strong> {{ productoEncontrado.precio | currency:'COL': 'symbol' }}</p>
         <p><strong>Descripción:</strong> {{ productoEncontrado.descripcion }}</p>
         <p><strong>Código de Barras:</strong> {{ productoEncontrado.codigoBarras }}</p>
@@ -59,6 +59,9 @@
 
             <label for="nuevoCodigoBarras">Código de Barras:</label>
             <input type="text" id="nuevoCodigoBarras" [(ngModel)]="nuevoProducto.codigoBarras" name="nuevoCodigoBarras" required/>
+
+            <label for="nuevoMarca">Marca:</label>
+            <input type="text" id="nuevoMarca" [(ngModel)]="nuevoProducto.marca" name="nuevoMarca" required/>
 
             <div class="button-container">
                 <button type="submit" class="submit-button">Crear Producto</button>
