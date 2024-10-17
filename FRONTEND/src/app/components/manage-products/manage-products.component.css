@@ -254,3 +254,7 @@ textarea {
   #nuevoNombre, #nuevoPrecio, #nuevoDescripcion, #nuevoCodigoBarras ,#nuevoMarca {
     width: 94%;
   }
+
+  #nombre {
+    width: 94%;
+  }

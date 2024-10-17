@@ -22,7 +22,7 @@ export class ManageUsersComponent {
     fechaNacimiento: '',
     email: '',
     contrasena: '',
-    tipoUsuario: 'general' // Valor por defecto
+    tipoUsuario: 'General' // Valor por defecto
   };
 
   constructor(private http: HttpClient) {}
