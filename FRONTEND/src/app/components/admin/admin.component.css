@@ -1,7 +1,112 @@
+html {
+  height: 100vh;
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+body {
+  position: relative;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  /*min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura */
+  display: flex;
+  flex-direction: column; /* Para permitir que el footer se mantenga en la parte inferior */
+  min-height: 100%;
+}
+
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 50px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute, fixed;
+ 
+}
+
+.lista {
+  margin-left: 300px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 26px; /* Tamaño del nombre de la tienda */
+}
+
+.phone-icon {
+  width: 40px;
+  height: 40px;
+  background-color: white; /* Color de fondo del ícono */
+  border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.cell {
+  margin-left: 6%;
+  margin-bottom: 3%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-grow: 1; /* Para que el nav ocupe el espacio restante */
+  justify-content: center; /* Centrar los elementos en la barra */
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline; /* Subraya el texto al pasar el mouse */
+  color: #FFD700; /* Cambia el color del texto en hover */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0px;
+  bottom: 0;
+  width: 100%;
+  margin-top: 10px;
+  position:  fixed;
+}
+
+.social-media {
+  margin-top: 10px;
+}
+
+.social-media a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+
 .contenedorAbsoluto {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    margin-bottom: 120px;
+    margin-bottom: 20px;
+    margin-top: 90px;
+    height: 100hv;
 }
 
 /* Contenedor principal del panel de administración */
@@ -10,7 +115,7 @@
     flex-direction: column;
     justify-content: top; /* Alinea verticalmente al centro */
     align-items: center; /* Alinea horizontalmente al centro */
-    height: 100vh; /* Altura completa de la ventana */
+    height: 100hv; /* Altura completa de la ventana */
     background-color: #f4f4f4;
     padding: 0; /* Elimina cualquier relleno adicional */
     margin: 0; /* Elimina márgenes extra */
@@ -23,7 +128,7 @@
     margin-bottom: 2rem;
     color: #333;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 40px;
   }
   
   /* Contenedor para los botones */
@@ -46,6 +151,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    margin-bottom: 20px;
   }
   
   /* Hover sobre los botones */
