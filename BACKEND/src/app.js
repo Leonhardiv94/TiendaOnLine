@@ -10,17 +10,23 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(bodyParser.json());
-app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 // Configura CORS
 app.use(cors({
   origin: 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
+
+// Middleware
+app.use(bodyParser.json());
+app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
 // Conectar a MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI)
@@ -40,11 +46,6 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong' });
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
 
 export default app;
