@@ -3,17 +3,15 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import userRoutes from './user.js';
-import productRoutes from './product.js';
+import userRoutes from './user.js'; // Asegúrate de que esta ruta sea correcta
+import productRoutes from './product.js'; // Asegúrate de que esta ruta sea correcta
+import userDetailRoutes from './routes/user-details.js'; // Asegúrate de que esta ruta sea correcta
 
 dotenv.config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
 
 // Configura CORS
 app.use(cors({
@@ -36,6 +34,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Rutas
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/user-details', userDetailRoutes);
 
 // Manejo de errores 404
 app.use((req, res) => {
@@ -46,6 +45,10 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 export default app;

@@ -29,6 +29,17 @@ const ProductSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', ProductSchema);
 
+// Ruta para obtener todos los productos
+router.get('/', async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    res.status(500).json({ message: 'Error al obtener productos' });
+  }
+});
+
 // Ruta para crear un nuevo producto con imagen
 router.post('/crear', upload.single('imagen'), async (req, res) => {
   const { nombre, precio, descripcion, codigoBarras, marca } = req.body;
@@ -105,17 +116,6 @@ router.delete('/eliminar/:codigoBarras', async (req, res) => {
   } catch (error) {
     console.error('Error al eliminar el Producto:', error);
     res.status(500).json({ error: error.message });
-  }
-});
-
-// Obtener todos los productos
-router.get('/', async (req, res) => {
-  try {
-    const products = await Product.find({});
-    res.status(200).json(products);
-  } catch (error) {
-    console.error('Error al obtener productos:', error);
-    res.status(500).json({ message: 'Error al obtener productos' });
   }
 });
 

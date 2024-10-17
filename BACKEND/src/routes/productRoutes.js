@@ -8,5 +8,5 @@ router.get('/api/products', (req, res) => {
   res.json({ message: 'Lista de productos' });
 });
 
-// Exportar el enrutador para que `app.js` lo use
+
 export default router;

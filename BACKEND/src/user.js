@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+
 // Ruta para registrar un usuario
 router.post('/register', async (req, res) => {
   console.log(req.body); // Para ver qué datos llegan
