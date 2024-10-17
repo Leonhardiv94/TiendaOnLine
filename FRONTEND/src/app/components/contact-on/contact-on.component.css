@@ -24,7 +24,7 @@ header {
     align-items: center;
     justify-content: space-between;
     position: fixed; /* Corregido */
-    width: 100%; /* Asegura que el header ocupe todo el ancho */
+    width: 95%; /* Asegura que el header ocupe todo el ancho */
     z-index: 1000; /* Para que esté sobre otros elementos */
 }
 
@@ -98,6 +98,10 @@ footer {
     color: rgb(99, 229, 90);
     margin: 0 10px;
     text-decoration: none;
+}
+
+.contenedorAbsoluto {
+    margin-top: 90px;
 }
 
 .contact-container {

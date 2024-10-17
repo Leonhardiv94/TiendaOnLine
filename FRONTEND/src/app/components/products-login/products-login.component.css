@@ -27,6 +27,12 @@ header {
   width: 95%;
 }
 
+.contenedorAbsoluto {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+
+}
+
 .lista {
   margin-left: 300px;
 }
