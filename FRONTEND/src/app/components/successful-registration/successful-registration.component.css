@@ -1,115 +1,159 @@
-.contenedorAbsoluto {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    margin-bottom: 120px;
-}
-
-body {
-    background-color: #f4f4f4; /* Color de fondo ligero */
-    color: #333; /* Color de texto principal */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
 }
 
-button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #e6c562;
+header {
+    background-color: #4CAF50;
     color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    margin: 5px;
+    padding: 15px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
 }
 
-button:hover {
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+}
+
+.phone-icon {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+.boton {
+    background-color: #e6c562;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.boton:hover {
     background-color: #FFD700;
 }
 
-/* Contenedor principal para el mensaje de éxito */
 .success-container {
-    max-width: 600px; /* Ancho máximo del contenedor */
-    margin: 100px auto; /* Centramos el contenedor en la página */
-    padding: 20px; /* Espaciado interno */
-    background-color: white; /* Fondo blanco */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    text-align: center; /* Centramos el texto */
+    text-align: center;
+    padding: 20px;
+    margin-top: 100px; /* Para evitar que el contenido quede debajo del header */
 }
 
-/* Título principal */
 .success-title {
-    font-size: 24px; /* Tamaño del título */
-    margin-bottom: 20px; /* Espacio debajo del título */
-    color: #4CAF50; /* Color verde para el éxito */
+    color: #4CAF50;
+    font-size: 32px;
 }
 
-/* Mensaje de éxito */
 .success-message {
-    font-size: 16px; /* Tamaño del texto */
-    margin-bottom: 20px; /* Espacio debajo del mensaje */
-    line-height: 1.5; /* Espaciado entre líneas */
+    font-size: 18px;
+    color: #555;
 }
 
-/* Botón de regreso o acción */
 .success-button {
-    padding: 10px 20px; /* Espaciado interno del botón */
-    background-color: #4CAF50; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-    font-size: 16px; /* Tamaño del texto del botón */
-    transition: background-color 0.3s ease; /* Transición suave */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 .success-button:hover {
-    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+    background-color: #45a049;
 }
 
-/* Media queries para dispositivos móviles */
+.contenedorAbsoluto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+/* Media Queries para Responsividad */
 @media (max-width: 768px) {
-    .contenedorAbsoluto {
-        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
-        margin-bottom: 60px;
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
     }
 
-    .success-container {
-        width: 90%; /* Reducir el ancho del contenedor en móviles */
-        margin: 50px auto; /* Ajustar el margen para móviles */
-        padding: 15px; /* Reducir el padding */
+    .logo {
+        font-size: 22px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
     }
 
     .success-title {
-        font-size: 20px; /* Reducir el tamaño del título */
+        font-size: 28px;
     }
 
     .success-message {
-        font-size: 14px; /* Reducir el tamaño del mensaje */
+        font-size: 16px;
     }
 
-    .success-button {
-        font-size: 14px; /* Reducir el tamaño del botón */
-        padding: 8px 16px; /* Ajustar el espaciado interno del botón */
+    .boton, .success-button {
+        width: 100%;
     }
 }
 
-/* Media queries para pantallas aún más pequeñas (teléfonos pequeños) */
 @media (max-width: 480px) {
-    .success-container {
-        width: 100%; /* Tomar el ancho completo */
-        margin: 30px auto;
+    .logo {
+        font-size: 20px;
+    }
+
+    .phone-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .boton, .success-button {
+        font-size: 12px;
+        padding: 8px 16px;
     }
 
     .success-title {
-        font-size: 18px; /* Tamaño del título para pantallas pequeñas */
+        font-size: 24px;
     }
 
     .success-message {
-        font-size: 12px; /* Tamaño del mensaje para pantallas pequeñas */
-    }
-
-    .success-button {
-        font-size: 12px; /* Tamaño del texto del botón */
-        padding: 6px 12px; /* Ajustar padding */
+        font-size: 14px;
     }
 }
