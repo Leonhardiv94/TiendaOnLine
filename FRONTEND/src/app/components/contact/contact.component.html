@@ -8,10 +8,10 @@
     <nav>
         <ul class="lista">
             <li><a href = "/admin" ><button class="boton" *ngIf="isAdmin()" >ADMIN</button></a></li>
-            <li><a href = "/home-on" ><button class="boton" >Inicio</button></a></li>
-            <li><a href = "/products-login" ><button class="boton" >Productos</button></a></li>
-            <li><a href = "/contact-on" ><button class="boton" >Contacto</button></a></li>
-                <li><button (click)="cerrarSesion()">Cerrar Sesión</button></li>
+            <li><a href = "/login" ><button class="boton" >Iniciar sesión</button></a></li>
+            <li><a href = "/home" ><button class="boton" >Inicio</button></a></li>
+            <li><a href = "/products" ><button class="boton" >Productos</button></a></li>
+            <li><a href = "/contact" ><button class="boton" >Contacto</button></a></li>
         </ul>
     </nav>
 </header>
@@ -30,7 +30,7 @@
         <p><strong>Dirección:</strong> Calle Ejemplo 123, Ciudad, País</p>
         </div>
         
-        <div class="social-media">
+        <div id="centro" class="social-media">
         <h2>Síguenos en Redes Sociales</h2>
         <p>
             <a href="https://facebook.com" target="_blank">Facebook</a> |
@@ -39,11 +39,4 @@
         </p>
     </div>
 </div>
-<footer>
-        <p>&copy; 2024 myStore. Todos los derechos reservados.</p>
-        <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-            </div>
-</footer> 
+

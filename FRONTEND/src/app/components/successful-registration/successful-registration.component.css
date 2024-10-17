@@ -19,11 +19,11 @@ button {
     cursor: pointer;
     border-radius: 4px;
     margin: 5px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #FFD700;
-  }
+}
 
 /* Contenedor principal para el mensaje de éxito */
 .success-container {
@@ -64,4 +64,52 @@ button {
 
 .success-button:hover {
     background-color: #45a049; /* Color más oscuro al pasar el mouse */
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .contenedorAbsoluto {
+        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+        margin-bottom: 60px;
+    }
+
+    .success-container {
+        width: 90%; /* Reducir el ancho del contenedor en móviles */
+        margin: 50px auto; /* Ajustar el margen para móviles */
+        padding: 15px; /* Reducir el padding */
+    }
+
+    .success-title {
+        font-size: 20px; /* Reducir el tamaño del título */
+    }
+
+    .success-message {
+        font-size: 14px; /* Reducir el tamaño del mensaje */
+    }
+
+    .success-button {
+        font-size: 14px; /* Reducir el tamaño del botón */
+        padding: 8px 16px; /* Ajustar el espaciado interno del botón */
+    }
+}
+
+/* Media queries para pantallas aún más pequeñas (teléfonos pequeños) */
+@media (max-width: 480px) {
+    .success-container {
+        width: 100%; /* Tomar el ancho completo */
+        margin: 30px auto;
+    }
+
+    .success-title {
+        font-size: 18px; /* Tamaño del título para pantallas pequeñas */
+    }
+
+    .success-message {
+        font-size: 12px; /* Tamaño del mensaje para pantallas pequeñas */
+    }
+
+    .success-button {
+        font-size: 12px; /* Tamaño del texto del botón */
+        padding: 6px 12px; /* Ajustar padding */
+    }
 }

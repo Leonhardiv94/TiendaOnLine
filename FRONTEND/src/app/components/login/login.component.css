@@ -6,15 +6,13 @@ html {
 body {
     position: relative;
     font-family: Arial, sans-serif;
-    margin-top: 0;
+    margin: 0;
     padding: 0;
     height: 100%;
-    /*min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura */
     display: flex;
     flex-direction: column; /* Para permitir que el footer se mantenga en la parte inferior */
-    min-height: 100%;
+    min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura */
 }
-
 
 header {
     background-color: #4CAF50;
@@ -26,6 +24,7 @@ header {
     justify-content: space-between;
     position: fixed;
     width: 95%;
+    z-index: 10; /* Asegura que el header esté encima del contenido */
 }
 
 .lista {
@@ -43,16 +42,10 @@ header {
     height: 40px;
     background-color: white; /* Color de fondo del ícono */
     border-radius: 8px;
-    position: relative;
-    margin-right: 10px;
     display: flex;
     align-items: center;
-    align-content: center;
-}
-
-.cell {
-    margin-left: 6%;
-    margin-bottom: 3%;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 nav ul {
@@ -83,10 +76,8 @@ footer {
     color: white;
     text-align: center;
     padding: 20px 0px;
-    bottom: 0;
     width: 100%;
-    margin-top: 10px;
-    position: absolute;
+    position: relative; /* Cambiado a relative para evitar superposición */
 }
 
 .social-media {
@@ -102,12 +93,11 @@ button {
     cursor: pointer;
     border-radius: 4px;
     margin: 5px;
-  }
-  
-  button:hover {
-    background-color: #FFD700;
-  }
+}
 
+button:hover {
+    background-color: #FFD700;
+}
 
 .social-media a {
     color: white;
@@ -119,7 +109,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     padding-top: 90px;
-    height: 50vh;
+    height: auto; /* Ajustado para que el contenido pueda crecer */
 }
 
 .login-container {
@@ -163,23 +153,41 @@ input[type="password"]:focus {
     outline: none; /* Elimina el contorno por defecto */
 }
 
-button {
-    width: 100%; /* Ancho completo */
-    padding: 10px; /* Espacio interno */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    background-color: #4CAF50; /* Color de fondo */
-    color: white; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s; /* Transición para el color de fondo */
-}
-
-button:hover {
-    background-color: #45a049; /* Color de fondo al pasar el mouse */
-}
-
 small {
     color: red; /* Color del texto de errores */
     display: block; /* Hace que el mensaje de error ocupe toda la línea */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        padding: 15px 10px;
+    }
+
+    .lista {
+        margin-left: 0; /* Elimina margen en dispositivos pequeños */
+    }
+
+    nav ul {
+        flex-direction: column; /* Apila los elementos del menú en pantallas pequeñas */
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Espaciado vertical en menú */
+    }
+
+    .contenedorAbsoluto {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+
+    .login-container {
+        width: 90%; /* Ampliar el ancho en dispositivos móviles */
+        margin: 20px auto; /* Centrar el contenedor */
+    }
+
+    footer {
+        padding: 15px 10px; /* Reduce padding en el footer */
+    }
 }

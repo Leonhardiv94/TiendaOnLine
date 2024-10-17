@@ -12,6 +12,7 @@ import axios from 'axios';
 })
 export class ProductsComponent implements OnInit {
   productos: any[] = [];
+  tipoUsuario: string = "";
 
   constructor() {}
 
@@ -32,6 +33,10 @@ export class ProductsComponent implements OnInit {
   anadirAlCarrito(producto: any): void {
     console.log('Producto añadido al carrito:', producto);
     // Lógica para añadir el producto al carrito
+  }
+
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
   }
 
   comprar(producto: any): void {
