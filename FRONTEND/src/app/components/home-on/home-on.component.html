@@ -8,21 +8,27 @@
     <nav>
         <ul class="lista">
             <li><a href = "/admin" ><button class="boton" *ngIf="isAdmin()" >ADMIN</button></a></li>
-            <li><a href = "/login" ><button class="boton" >Iniciar sesion</button></a></li>
-            <li><a href = "/home-on" ><button class="boton" >Inicio</button></a></li>
-            <li><a href = "/products-login" ><button class="boton" >Productos</button></a></li>
-            <li><a href = "/contact-on" ><button class="boton" >Contacto</button></a></li>
+        <li><a href = "/home-on" ><button class="boton" >Inicio</button></a></li>
+        <li><a href = "/products-login" ><button class="boton" >Productos</button></a></li>
+        <li><a href = "/contact-on" ><button class="boton" >Contacto</button></a></li>
+            <li><button (click)="cerrarSesion()">Cerrar Sesión</button></li>
         </ul>
     </nav>
 </header>
     <div class="contenedorAbsoluto">
-        <div></div>
+        <div class="user-container">
+            <i class="fas fa-user-circle user-icon"></i>
+            <div class="user-info">
+              <p>👤 Usuario:<br><span class="user-name">{{ ' ' + nombre + ' ' }}{{ apellido }}</span></p>
+              <p>🎭 Rol:<br><span class="user-role">{{ tipoUsuario }}</span></p>
+            </div>
+        </div>
 
         <main>
             <section class="hero">
                 <h2>Bienvenido a myStore</h2>
                 <p class="sub">Tu tienda online de celulares de última generación. Aquí encontrarás los modelos más recientes y las mejores ofertas.</p>
-                <a href="/products-login" class="btn">Explorar Productos</a>
+                <a href="#" class="btn">Explorar Productos</a>
             </section>
         
             <section class="about-us">

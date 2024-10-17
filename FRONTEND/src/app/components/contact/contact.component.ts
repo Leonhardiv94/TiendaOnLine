@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-contact',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
-})
-export class HomeComponent {
-  tipoUsuario: string = '';
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css'
 
+})
+export class ContactComponent {
+  tipoUsuario: string = ''
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAdmin(): boolean {
     return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
+
   }
-
-
-  constructor(private http: HttpClient, private router: Router) {}
 
   cerrarSesion(): void {
     // Eliminar el token y los datos del usuario del localStorage

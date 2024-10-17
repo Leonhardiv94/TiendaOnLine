@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup; // Definimos el FormGroup
   loginMessage: string = '';
+  tipoUsuario: string = '';
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     // Inicializamos el formulario con validaciones
@@ -21,6 +22,10 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]], // Validación para el correo
       contrasena: ['', [Validators.required, Validators.minLength(6)]] // Validación para la contraseña
     });
+  }
+
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
   }
 
   // Método que se llama al enviar el formulario

@@ -8,6 +8,9 @@ import { ManageProductsComponent } from './components/manage-products/manage-pro
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsLoginComponent } from './components/products-login/products-login.component';
+import { HomeOnComponent } from './components/home-on/home-on.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ContactOnComponent } from './components/contact-on/contact-on.component';
 
 export const routes: Routes = [
  
@@ -18,6 +21,9 @@ export const routes: Routes = [
     {path:"products", component: ProductsComponent, title: "Productos"},
     {path:"products-login", component: ProductsLoginComponent, title: "Productos"},
     {path:"manage-products", component: ManageProductsComponent, title: "AdminProducts"},
+    {path:"home-on", component: HomeOnComponent, title: "Inicio"},
+    {path:"contact", component: ContactComponent, title: "Contacto"},
+    {path:"contact-on", component: ContactOnComponent, title: "Contacto"},
     {path:"manage-users", component: ManageUsersComponent, title: "AdminUsers"},
     {path:"successful-registration", component: SuccessfulRegistrationComponent, title: "Registro exitoso" },
     {path:"**", redirectTo: "/register" }

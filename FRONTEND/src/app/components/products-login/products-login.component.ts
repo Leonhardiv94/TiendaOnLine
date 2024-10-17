@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-login',
@@ -15,7 +16,7 @@ export class ProductsLoginComponent implements OnInit {
   apellido: string= '';
   tipoUsuario: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.obtenerProductos(); // Llamamos al método para obtener los productos
@@ -48,5 +49,20 @@ export class ProductsLoginComponent implements OnInit {
 
   comprar(producto: any): void {
     // Lógica para comprar el producto
+  }
+
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
+  }
+
+  cerrarSesion(): void {
+    // Eliminar el token y los datos del usuario del localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('apellido');
+    localStorage.removeItem('tipoUsuario');
+
+    // Redirigir al usuario a la página de inicio o de login
+    this.router.navigate(['/home'], { replaceUrl: true });
   }
 }

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-products',
@@ -16,6 +17,10 @@ export class ManageProductsComponent {
   productoEncontrado: any = null; // Producto encontrado
   producto: any = null;
   error: string = '';
+  nombre: string = '';
+  apellido: string= '';
+  tipoUsuario: string = '';
+  detallesUsuario: any = null;
   modificarFormVisible: boolean = false; // Control de visibilidad del formulario de modificación
   crearFormVisible: boolean = false; // Control de visibilidad del formulario de creación
   nuevoProducto: any = { // Objeto para almacenar los datos del nuevo producto
@@ -29,7 +34,35 @@ export class ManageProductsComponent {
   
   selectedFile: File | null = null; // Archivo seleccionado
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+  ngOnInit(): void {
+    // Obtenemos los datos del usuario almacenados en localStorage
+    this.nombre = localStorage.getItem('nombre') || 'Usuario';
+    this.apellido = localStorage.getItem('apellido') || 'Apellido';
+    this.tipoUsuario = localStorage.getItem('tipoUsuario') || 'Desconocido';
+
+    // Si necesitas obtener más datos desde el backend
+    this.obtenerDetallesUsuario();
+  }
+
+  obtenerDetallesUsuario(): void {
+    const token = localStorage.getItem('token'); // Obtenemos el token desde el localStorage
+
+    // Realizamos una petición HTTP al servidor para obtener los detalles del usuario
+    this.http.get<any>('http://localhost:5000/api/user-details', {
+      headers: {
+        'Authorization': `Bearer ${token}` // Enviamos el token en los headers
+      }
+    }).subscribe({
+      next: (response) => {
+        this.detallesUsuario = response;
+      },
+      error: (error) => {
+        console.error('Error al obtener los detalles del usuario:', error);
+      }
+    });
+  }
 
   // Método para manejar el archivo seleccionado
   onFileSelected(event: Event) {
@@ -159,4 +192,18 @@ export class ManageProductsComponent {
     this.resetForm(); // Reiniciar el formulario para asegurarte de que no tenga datos previos
   }
   
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
+  }
+
+  cerrarSesion(): void {
+    // Eliminar el token y los datos del usuario del localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('apellido');
+    localStorage.removeItem('tipoUsuario');
+
+    // Redirigir al usuario a la página de inicio o de login
+    this.router.navigate(['/home'], { replaceUrl: true });
+  }
 }

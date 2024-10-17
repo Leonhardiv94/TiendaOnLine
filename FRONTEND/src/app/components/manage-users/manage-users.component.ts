@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-users',
@@ -15,6 +16,10 @@ export class ManageUsersComponent {
   usuarioEncontrado: any = null; // Variable para almacenar los datos del usuario buscado
   modificarFormVisible: boolean = false; // Controla la visibilidad del formulario de modificación
   crearFormVisible: boolean = false; // Controla la visibilidad del formulario de creación
+  nombre: string = '';
+  apellido: string= '';
+  tipoUsuario: string = '';
+  detallesUsuario: any = null;
   nuevoUsuario: any = { // Objeto para almacenar los datos del nuevo usuario
     nombre: '',
     apellido: '',
@@ -25,7 +30,7 @@ export class ManageUsersComponent {
     tipoUsuario: 'General' // Valor por defecto
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Método que simula la búsqueda de usuarios
   buscarUsuario() {
@@ -43,6 +48,34 @@ export class ManageUsersComponent {
           alert('Usiario no existe');
         }
       });
+  }
+
+  ngOnInit(): void {
+    // Obtenemos los datos del usuario almacenados en localStorage
+    this.nombre = localStorage.getItem('nombre') || 'Usuario';
+    this.apellido = localStorage.getItem('apellido') || 'Apellido';
+    this.tipoUsuario = localStorage.getItem('tipoUsuario') || 'Desconocido';
+
+    // Si necesitas obtener más datos desde el backend
+    this.obtenerDetallesUsuario();
+  }
+
+  obtenerDetallesUsuario(): void {
+    const token = localStorage.getItem('token'); // Obtenemos el token desde el localStorage
+
+    // Realizamos una petición HTTP al servidor para obtener los detalles del usuario
+    this.http.get<any>('http://localhost:5000/api/user-details', {
+      headers: {
+        'Authorization': `Bearer ${token}` // Enviamos el token en los headers
+      }
+    }).subscribe({
+      next: (response) => {
+        this.detallesUsuario = response;
+      },
+      error: (error) => {
+        console.error('Error al obtener los detalles del usuario:', error);
+      }
+    });
   }
 
   mostrarFormularioCrear() {
@@ -126,5 +159,20 @@ export class ManageUsersComponent {
           alert('Error al eliminar el usuario');
         }
       });
+  }
+
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
+  }
+
+  cerrarSesion(): void {
+    // Eliminar el token y los datos del usuario del localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('apellido');
+    localStorage.removeItem('tipoUsuario');
+
+    // Redirigir al usuario a la página de inicio o de login
+    this.router.navigate(['/home'], { replaceUrl: true });
   }
 }

@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import axios from 'axios';
 import { Router } from '@angular/router'; // Importa Router
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class RegisterComponent {
   registroForm: FormGroup;
+  tipoUsuario: string = '';
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.registroForm = this.fb.group({
@@ -23,6 +25,10 @@ export class RegisterComponent {
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
       tipoUsuario: ["general"]
     });
+  }
+
+  isAdmin(): boolean {
+    return this.tipoUsuario === 'admin'; // Cambia 'Administrador' por el valor que uses para admin
   }
 
   async onSubmit() {

@@ -1,3 +1,20 @@
+<header>
+    <div class="logo">
+        <div class="phone-icon">
+            <div class="cell">📱</div>
+        </div>
+        <span>myStore</span>
+    </div>
+    <nav>
+        <ul class="lista">
+            <li><a href = "/admin" ><button class="boton" *ngIf="isAdmin()" >ADMIN</button></a></li>
+            <li><a href = "/home-on" ><button class="boton" >Inicio</button></a></li>
+            <li><a href = "/products-login" ><button class="boton" >Productos</button></a></li>
+            <li><a href = "/contact-on" ><button class="boton" >Contacto</button></a></li>
+            <li><button class="boton" (click)="cerrarSesion()">Cerrar Sesión</button></li>
+        </ul>
+    </nav>
+</header>
 <div class="contenedorAbsoluto">
     <div class="user-container">
         <i class="fas fa-user-circle user-icon"></i>
@@ -5,7 +22,7 @@
           <p>👤 Usuario:<br><span class="user-name">{{ ' ' + nombre + ' ' }}{{ apellido }}</span></p>
           <p>🎭 Rol:<br><span class="user-role">{{ tipoUsuario }}</span></p>
         </div>
-      </div>
+    </div>
     <div class="products-container">
         <div *ngFor="let producto of productos" class="product-card">
             <div class="informacion">
@@ -22,3 +39,11 @@
     </div>
     <div></div>
 </div>
+<footer>
+    <p>&copy; 2024 myStore. Todos los derechos reservados.</p>
+    <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        </div>
+</footer>

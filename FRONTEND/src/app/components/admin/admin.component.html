@@ -7,17 +7,23 @@
   </div>
   <nav>
       <ul class="lista">
-          <li><a href="/home">Inicio</a></li>
-          <li><a href="/login">Igresar</a></li>
-          <li><a href="/register">Registro</a></li>
-          <li><a href="/products">Productos</a></li>
-          <li><a href="#">Contacto</a></li>
+        <li><a href = "/admin" ><button class="boton" *ngIf="isAdmin()" >ADMIN</button></a></li>
+        <li><a href = "/home-on" ><button class="boton" >Inicio</button></a></li>
+        <li><a href = "/products-login" ><button class="boton" >Productos</button></a></li>
+        <li><a href = "/contact-on" ><button class="boton" >Contacto</button></a></li>
+          <li><button (click)="cerrarSesion()">Cerrar Sesión</button></li>
       </ul>
   </nav>
 </header>
 
 <div class="contenedorAbsoluto">
-    <div></div>
+  <div class="user-container">
+    <i class="fas fa-user-circle user-icon"></i>
+    <div class="user-info">
+      <p>👤 Usuario:<br><span class="user-name">{{ ' ' + nombre + ' ' }}{{ apellido }}</span></p>
+      <p>🎭 Rol:<br><span class="user-role">{{ tipoUsuario }}</span></p>
+    </div>
+</div>
 
     <div class="admin-container">
         <h1>Panel de Administración</h1>
