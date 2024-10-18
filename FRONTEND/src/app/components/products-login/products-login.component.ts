@@ -48,7 +48,13 @@ export class ProductsLoginComponent implements OnInit {
   }
 
   comprar(producto: any): void {
-    // Lógica para comprar el producto
+    const numeroVendedor = '+573238004878';
+    const mensaje = `Hola, me interesa comprar el producto: ${producto.nombre}. Precio: ${producto.precio}.`;
+  
+    const url = `https://wa.me/${+573238004878}?text=${encodeURIComponent(mensaje)}`;
+  
+    // Redirige al usuario al chat de WhatsApp
+    window.open(url, '_blank');
   }
 
   isAdmin(): boolean {
