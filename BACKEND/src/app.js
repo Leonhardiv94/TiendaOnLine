@@ -3,17 +3,30 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import userRoutes from './user.js'; // Asegúrate de que esta ruta sea correcta
-import productRoutes from './product.js'; // Asegúrate de que esta ruta sea correcta
-import userDetailRoutes from './routes/user-details.js'; // Asegúrate de que esta ruta sea correcta
+import userRoutes from './user.js';
+import productRoutes from './product.js';
+import userDetailRoutes from './routes/user-details.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const app = express();
-
 const PORT = process.env.PORT || 5000;
 
-// Configura CORS
+// Definir __dirname en ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Middleware para servir archivos estáticos desde el frontend
+app.use(express.static(path.join(__dirname, '../../FRONTEND/dist')));
+
+// Redirigir todas las rutas al archivo index.html del frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../FRONTEND/dist/index.html'));
+});
+
+// Configurar CORS
 app.use(cors({
   origin: 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -31,7 +44,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-// Rutas
+// Rutas API
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/user-details', userDetailRoutes);
@@ -47,8 +60,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong' });
 });
 
+// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 export default app;
