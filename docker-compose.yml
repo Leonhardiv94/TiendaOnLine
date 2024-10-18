@@ -1,0 +1,31 @@
+---
+services:
+  front:
+    build:
+      context: ./FRONTEND
+      dockerfile: Dockerfile
+    ports:
+      - "80:4200"  # Angular servirá en el puerto 4200
+    depends_on:
+      - back
+
+  back:
+    build:
+      context: ./BACKEND
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Express servirá en el puerto 3000
+    env_file:
+      - ./BACKEND/.env
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
